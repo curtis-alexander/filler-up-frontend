@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
-    <h3>Choose Your Octane</h3>
+    <h2>Choose Your Octane</h2>
     <div v-for="product in products" v-bind:key="product.id">
       <p>ID: {{ product.id }}</p>
       <img v-on:click="productShow(product)" v-bind:src="product.image_url">
@@ -43,6 +43,7 @@ export default {
       console.log("showing chosen product");
       this.currentProduct = product;
       console.log(this.currentProduct);
+      this.$router.push("/Orders");
     },
   },
 };

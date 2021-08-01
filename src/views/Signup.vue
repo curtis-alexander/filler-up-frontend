@@ -1,7 +1,8 @@
 <template>
   <div class="signup">
     <form v-on:submit.prevent="submit()">
-      <h1>Signup</h1>
+      <h1>Fill'er Up</h1>
+      <h2>Signup</h2>
       <ul>
         <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
       </ul>
@@ -18,8 +19,8 @@
         <input type="email" v-model="newUserParams.email" />
       </div>
       <div>
-        <label>Phnoe Number:</label>
-        <input type="email" v-model="newUserParams.phone_number" />
+        <label>Phone Number:</label>
+        <input type="text" v-model="newUserParams.phone_number" />
       </div>
       <div>
         <label>Password:</label>
@@ -50,7 +51,7 @@ export default {
         .post("/users", this.newUserParams)
         .then((response) => {
           console.log(response.data);
-          this.$router.push("/");
+          this.$router.push("/sessions");
         })
         .catch((error) => {
           this.errors = error.response.data.errors;

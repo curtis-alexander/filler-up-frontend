@@ -5,11 +5,16 @@
       <ul>
         <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
       </ul>
-      Dollar Amount:
+      <p>{{ newOrderParams }}</p>
+
+      <p>Dollar Amount:
       <input type="text" v-model="newOrderParams.dollar_amount" />
-      Gallon Amount:
+      </p>
+      <p>{{ "OR" }}</p>
+      <p>Gallon Amount:
       <input type="text" v-model="newOrderParams.gallon_amount" />
-      <input type="submit" value="Create" />
+      </p>
+      <input type="submit" value="Continue" />
     </form>
   </div>
 </template>
@@ -27,10 +32,11 @@ export default {
   methods: {
     createOrder: function () {
       axios
-        .post("/Orders", this.newOrderParams)
+        .post("/orders", this.newOrderParams)
         .then((response) => {
-          console.log("Orders create", response);
-          this.$router.push("/Orders");
+          console.log("Orders create", response.data);
+          this.newOrderParams = response.data;
+          this.$router.push("/");
         })
         .catch((error) => {
           console.log("Orders create error", error.response);
