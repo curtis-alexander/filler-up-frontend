@@ -1,6 +1,6 @@
 <template>
   <div class="signup">
-    <form v-on:submit.prevent="submit()">
+    <form v-on:submit.prevent="signup()">
       <h1>Fill'er Up</h1>
       <h2>Signup</h2>
       <ul>
@@ -46,7 +46,7 @@ export default {
     };
   },
   methods: {
-    submit: function () {
+    signup: function () {
       axios
         .post("/users", this.newUserParams)
         .then((response) => {
@@ -55,6 +55,23 @@ export default {
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
+        });
+    },
+    login: function () {
+      axios
+        .post("/sessions", this.newSessionParams)
+        .then((response) => {
+          axios.defaults.headers.common["Authorization"] =
+            "Bearer " + response.data.jwt;
+          localStorage.setItem("jwt", response.data.jwt);
+          localStorage.setItem("user_id", response.data.user_id);
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.log(error.response);
+          this.errors = ["Invalid email or password."];
+          this.email = "";
+          this.password = "";
         });
     },
   },

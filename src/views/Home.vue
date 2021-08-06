@@ -43,7 +43,7 @@ export default {
       console.log("showing chosen product");
       this.currentProduct = product;
       console.log(this.currentProduct);
-      this.$router.push("/Orders");
+      this.$router.push(`/Orders?product_id=${product.id}`);
     },
   },
 };
