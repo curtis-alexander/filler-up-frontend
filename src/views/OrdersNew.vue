@@ -26,7 +26,7 @@
         Vehicle ID:
         <input type="text" v-model="newOrderParams.vehicle_id" />
       </p>
-      <input type="submit" value="Continue" />
+      <input type="submit" value="Order" />
     </form>
   </div>
 </template>
