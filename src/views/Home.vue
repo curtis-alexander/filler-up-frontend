@@ -1,12 +1,46 @@
 <template>
-  <div class="home">
-    <h1>{{ message }}</h1>
-    <h2>Choose Your Octane</h2>
-    <div v-for="product in products" v-bind:key="product.id">
-      <p>ID: {{ product.id }}</p>
-      <img v-on:click="productShow(product)" v-bind:src="product.image_url">
-      <p>Price Per Gallon: {{ "$" + product.price_per_gallon }}</p>
-      <hr />
+  <div>
+    <div class="home">
+      <h1>{{ message }}</h1>
+      <h2>Choose Your Octane</h2>
+      <div v-for="product in products" v-bind:key="product.id">
+        <p>ID: {{ product.id }}</p>
+        <img v-on:click="productShow(product)" v-bind:src="product.image_url" />
+        <p>Price Per Gallon: {{ "$" + product.price_per_gallon }}</p>
+        <hr />
+      </div>
+    </div>
+    <div class="orders-new">
+      <h2>Choose Amount</h2>
+      <form v-on:submit.prevent="createOrder()">
+        <ul>
+          <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+        </ul>
+        <p>{{ newOrderParams }}</p>
+
+        <p>Dollar Amount:</p>
+        <p>
+          <input type="text" v-model="newOrderParams.dollar_amount" />
+        </p>
+        <p>{{ "OR" }}</p>
+        <p>Gallon Amount:</p>
+        <p>
+          <input type="text" v-model="newOrderParams.gallon_amount" />
+        </p>
+        <hr />
+        <h2>Choose Your Vehicle</h2>
+        <p>
+          Vehicle ID:
+          <input type="text" v-model="newOrderParams.vehicle_id" />
+        </p>
+        <hr />
+        <h2>Where is Your Vehicle?</h2>
+        <p>
+          Vehicle Location Address:
+          <input type="text" v-model="newOrderParams.location" />
+        </p>
+        <input type="submit" value="Order" />
+      </form>
     </div>
   </div>
 </template>
@@ -24,8 +58,10 @@ export default {
   data: function () {
     return {
       message: "Fill'er Up",
+      errors: [],
       products: [],
       currentProduct: {},
+      newOrderParams: {},
     };
   },
   created: function () {
@@ -41,9 +77,23 @@ export default {
     },
     productShow: function (product) {
       console.log("showing chosen product");
-      this.currentProduct = product;
-      console.log(this.currentProduct);
-      this.$router.push(`/Orders?product_id=${product.id}`);
+      this.newOrderParams = product;
+      // var product_id = product.id;
+      console.log(this.newOrderParams);
+      // this.$router.push(`/Orders?product_id=${product.id}`);
+    },
+    createOrder: function () {
+      axios
+        .post(`/orders?user_id=${localStorage.user_id}`, this.newOrderParams)
+        .then((response) => {
+          console.log("Orders create", response.data);
+          this.newOrderParams = response.data;
+          this.$router.push("/confirmation");
+        })
+        .catch((error) => {
+          console.log("Orders create error", error.response);
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };
