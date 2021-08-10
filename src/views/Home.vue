@@ -29,6 +29,34 @@
         </p>
         <hr />
         <h2>Choose Your Vehicle</h2>
+        <div>
+          <div class="vehicle_create">
+            <h3>New Vehicle</h3>
+            <form v-on:submit.prevent="createVehicle()">
+              <ul>
+                <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+              </ul>
+              <p>Make:</p>
+              <p>
+                <input type="text" v-model="newOrderParams.make" />
+              </p>
+              <p>Model:</p>
+              <p>
+                <input type="text" v-model="newOrderParams.model" />
+              </p>
+              <p>Color:</p>
+              <p>
+                <input type="text" v-model="newOrderParams.color" />
+              </p>
+              <p>Plate:</p>
+              <p>
+                <input type="text" v-model="newOrderParams.plate" />
+              </p>
+              <input type="submit" value="Submit" />
+            </form>
+          </div>
+        </div>
+        <p>{{ "OR" }}</p>
         <p>
           Vehicle ID:
           <input type="text" v-model="newOrderParams.vehicle_id" />
@@ -89,6 +117,18 @@ export default {
           console.log("Orders create", response.data);
           this.newOrderParams = response.data;
           this.$router.push("/confirmation");
+        })
+        .catch((error) => {
+          console.log("Orders create error", error.response);
+          this.errors = error.response.data.errors;
+        });
+    },
+    createVehicle: function () {
+      axios
+        .post(`/vehicles?user_id=${localStorage.user_id}`, this.newOrderParams)
+        .then((response) => {
+          console.log("creating new car", response.data);
+          this.newOrderParams = response.data;
         })
         .catch((error) => {
           console.log("Orders create error", error.response);

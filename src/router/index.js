@@ -31,7 +31,7 @@ const routes = [
   },
   {
     path: "/confirmation",
-    name: "ConfirmationNew",
+    name: "Confirmation",
     component: Confirmation,
   },
   {
