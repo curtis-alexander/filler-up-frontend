@@ -16,7 +16,9 @@
         <ul>
           <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
         </ul>
-        <p>{{ newOrderParams }}</p>
+        <p>P {{ newOrderParams }}</p>
+        <p>C {{ currentProduct }}</p>
+        <p>V {{ newVehicle }}</p>
 
         <p>Dollar Amount:</p>
         <p>
@@ -57,8 +59,8 @@
           </div>
         </div>
         <p>{{ "OR" }}</p>
+        <p>Choose by Vehicle ID:</p>
         <p>
-          Vehicle ID:
           <input type="text" v-model="newOrderParams.vehicle_id" />
         </p>
         <hr />
@@ -89,6 +91,7 @@ export default {
       errors: [],
       products: [],
       currentProduct: {},
+      newVehicle: {},
       newOrderParams: {},
     };
   },
@@ -107,10 +110,13 @@ export default {
       console.log("showing chosen product");
       this.newOrderParams = product;
       // var product_id = product.id;
+      this.newOrderParams.product_id = this.newOrderParams.id;
       console.log(this.newOrderParams);
       // this.$router.push(`/Orders?product_id=${product.id}`);
     },
     createOrder: function () {
+      this.newOrderParams.product_id = this.currentProduct.id;
+      console.log(this.newOrderParams);
       axios
         .post(`/orders?user_id=${localStorage.user_id}`, this.newOrderParams)
         .then((response) => {
@@ -128,12 +134,13 @@ export default {
         .post(`/vehicles?user_id=${localStorage.user_id}`, this.newOrderParams)
         .then((response) => {
           console.log("creating new car", response.data);
-          this.newOrderParams = response.data;
+          this.newVehicle = response.data;
         })
         .catch((error) => {
           console.log("Orders create error", error.response);
           this.errors = error.response.data.errors;
         });
+      this.newOrderParams.vehicle_id = this.newVehicle.id;
     },
   },
 };
