@@ -29,6 +29,7 @@
         <p>
           <input type="text" v-model="newOrderParams.gallon_amount" />
         </p>
+        <p>Total: {{ gallonTotal }}</p>
         <hr />
         <h2>Choose Your Vehicle</h2>
         <div>
@@ -98,6 +99,13 @@ export default {
   created: function () {
     this.productsIndex();
   },
+  computed: {
+    gallonTotal: function () {
+      return (
+        this.newOrderParams.gallon_amount * this.newOrderParams.price_per_gallon
+      );
+    },
+  },
   methods: {
     productsIndex: function () {
       console.log("in the products index");
@@ -109,10 +117,8 @@ export default {
     productShow: function (product) {
       console.log("showing chosen product");
       this.newOrderParams = product;
-      // var product_id = product.id;
       this.newOrderParams.product_id = this.newOrderParams.id;
       console.log(this.newOrderParams);
-      // this.$router.push(`/Orders?product_id=${product.id}`);
     },
     createOrder: function () {
       this.newOrderParams.product_id = this.currentProduct.id;

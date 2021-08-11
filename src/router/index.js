@@ -5,6 +5,7 @@ import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import OrdersNew from "../views/OrdersNew.vue";
 import Confirmation from "../views/Confirmation.vue";
+import NewAccount from "../views/NewAccount.vue";
 
 Vue.use(VueRouter);
 
@@ -33,6 +34,11 @@ const routes = [
     path: "/confirmation",
     name: "Confirmation",
     component: Confirmation,
+  },
+  {
+    path: "/new_account",
+    name: "New_Account",
+    component: NewAccount,
   },
   {
     path: "/about",

@@ -72,7 +72,7 @@ export default {
         .post("/users", this.newUserParams)
         .then((response) => {
           console.log(response.data);
-          this.$router.push("/home");
+          this.$router.push("/new_account");
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
