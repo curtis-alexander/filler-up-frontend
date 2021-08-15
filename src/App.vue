@@ -3,46 +3,33 @@
     <header id="header" class="d-flex align-items-center">
       <div class="container d-flex align-items-center justify-content-between">
         <div class="logo">
-          <a href="index.html"
+          <a href="/home"
             ><img src="assets/img/logo.png" alt="" class="img-fluid"
           /></a>
         </div>
 
         <nav id="navbar" class="navbar">
           <ul>
-            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-            <li><a class="nav-link scrollto" href="#about">About</a></li>
+            <li><a class="nav-link scrollto active" href="/home">Home</a></li>
+            <!-- <li><a class="nav-link scrollto" href="#about">About</a></li>
             <li><a class="nav-link scrollto" href="#services">Services</a></li>
             <li>
               <a class="nav-link scrollto" href="#portfolio">Portfolio</a>
             </li>
             <li><a class="nav-link scrollto" href="#team">Team</a></li>
-            <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
+            <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li> -->
             <li class="dropdown">
               <a href="#"
-                ><span>Drop Down</span> <i class="bi bi-chevron-down"></i
+                ><span>Signup/Login</span> <i class="bi bi-chevron-down"></i
               ></a>
               <ul>
-                <li><a href="#">Drop Down 1</a></li>
-                <li class="dropdown">
-                  <a href="#"
-                    ><span>Deep Drop Down</span>
-                    <i class="bi bi-chevron-right"></i
-                  ></a>
-                  <ul>
-                    <li><a href="#">Deep Drop Down 1</a></li>
-                    <li><a href="#">Deep Drop Down 2</a></li>
-                    <li><a href="#">Deep Drop Down 3</a></li>
-                    <li><a href="#">Deep Drop Down 4</a></li>
-                    <li><a href="#">Deep Drop Down 5</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Drop Down 2</a></li>
-                <li><a href="#">Drop Down 3</a></li>
-                <li><a href="#">Drop Down 4</a></li>
+                <li><a href="/">Signup</a></li>
+                <li><a href="/">Login</a></li>
+                <!-- <li><a href="#">Drop Down 3</a></li>
+                <li><a href="#">Drop Down 4</a></li> -->
               </ul>
             </li>
-            <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+            <!-- <li><a class="nav-link scrollto" href="#contact">Contact</a></li> -->
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
@@ -57,8 +44,8 @@
           <div class="row justify-content-center">
             <div class="col-lg-6">
               <a href="#header" class="scrollto footer-logo"><img src="assets/img/hero-logo.png" alt=""></a>
-              <h3>Knight</h3>
-              <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+              <h3>Fill'er Up</h3>
+              <p>Stay up to date with everything Fuel!</p>
             </div>
           </div>
 
@@ -83,7 +70,7 @@
 
       <div class="container footer-bottom clearfix">
         <div class="copyright">
-          &copy; Copyright <strong><span>Knight</span></strong>. All Rights Reserved
+          &copy; Copyright <strong><span>MaxMeik</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
           <!-- All the links in the footer should remain intact. -->
