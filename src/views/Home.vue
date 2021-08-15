@@ -29,7 +29,7 @@
         <p>
           <input type="text" v-model="newOrderParams.gallon_amount" />
         </p>
-        <p>Total: {{ gallonTotal }}</p>
+        <p>Total: {{ gallonTotal }} {{ dollarTotal }}</p>
         <hr />
         <h2>Choose Your Vehicle</h2>
         <div>
@@ -105,6 +105,9 @@ export default {
         this.newOrderParams.gallon_amount * this.newOrderParams.price_per_gallon
       );
     },
+    dollarTotal: function () {
+      return this.newOrderParams.dollar_amount;
+    },
   },
   methods: {
     productsIndex: function () {
@@ -141,12 +144,12 @@ export default {
         .then((response) => {
           console.log("creating new car", response.data);
           this.newVehicle = response.data;
+          this.newOrderParams.vehicle_id = this.newVehicle.id;
         })
         .catch((error) => {
           console.log("Orders create error", error.response);
           this.errors = error.response.data.errors;
         });
-      this.newOrderParams.vehicle_id = this.newVehicle.id;
     },
   },
 };
