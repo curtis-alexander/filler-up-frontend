@@ -22,123 +22,119 @@
       </div>
     </section>
     <!-- End Octane Section -->
-    <form v-on:submit.prevent="createOrder()">
-      <!-- ======= Amount Section ======= -->
-      <section id="contact" class="contact section-bg">
-        <div class="container">
-          <div class="section-title">
-            <ul>
-              <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
-            </ul>
-            <h2>Choose Amount</h2>
-            <p>How much fuel do you need?</p>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-4">
-              <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left">
-                <div class="row">
-                  <div class="col-md-12 form-group">
-                    <input type="text" v-model="newOrderParams.dollar_amount" class="form-control" placeholder="Dollar Amount" />
-                  </div>
-                  <div class="col">OR</div>
-                  <div class="col-md-12 form-group mt-3 mt-md-0">
-                    <input type="text" v-model="newOrderParams.gallon_amount" class="form-control" placeholder="Gallon Amount" />
-                  </div>
-                  <div class="col">
-                    Total: {{ gallonTotal }} {{ dollarTotal }}
-                  </div>
+    <!-- ======= Amount Section ======= -->
+    <section id="contact" class="contact section-bg">
+      <div class="container">
+        <div class="section-title">
+          <ul>
+            <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+          </ul>
+          <h2>Choose Amount</h2>
+          <p>How much fuel do you need?</p>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-4">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left">
+              <div class="row">
+                <div class="col-md-12 form-group">
+                  <input type="text" v-model="newOrderParams.dollar_amount" class="form-control" placeholder="Dollar Amount" />
                 </div>
-              </form>
-            </div>
+                <div class="col">OR</div>
+                <div class="col-md-12 form-group mt-3 mt-md-0">
+                  <input type="text" v-model="newOrderParams.gallon_amount" class="form-control" placeholder="Gallon Amount" />
+                </div>
+                <div class="col">
+                  Total: {{ gallonTotal }} {{ dollarTotal }}
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-      </section>
-      <!-- End Amount Section -->
-      <!-- ======= Vehicle Section ======= -->
-      <section id="contact" class="contact section-bg">
-        <div class="container">
+      </div>
+    </section>
+    <!-- End Amount Section -->
+    <!-- ======= Vehicle Section ======= -->
+    <section id="contact" class="contact section-bg">
+      <div class="container">
 
-          <div class="section-title">
-            <h2>Vehicle</h2>
-            <p>Choose Your Vehicle by ID# or Create a New One</p>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-lg-8 mt-5 mt-lg-0">
-              <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left" v-on:submit.prevent="createVehicle()">
-                <ul>
-                  <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
-                </ul>
-                <div class="row">
-                  <div class="col-md-6 form-group">
-                    <input type="text" class="form-control" placeholder="Make" v-model="newOrderParams.make"/>
-                  </div>
-                  <div class="col-md-6 form-group mt-3 mt-md-0">
-                    <input type="text" class="form-control" placeholder="Model" v-model="newOrderParams.model"/>
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <input type="text" class="form-control" placeholder="Color" v-model="newOrderParams.color"/>
-                  </div>
-                  <div class="col-md-6 form-group mt-3 mt-md-0">
-                    <input type="text" class="form-control" placeholder="Plate" v-model="newOrderParams.plate"/>
-                  </div>
-                  <div class="text-center"><button type="submit">Create Vehicle</button></div>
-                  <div class="col-7">OR</div>
-                  <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Vehicle ID (if known)" v-model="newOrderParams.vehicle_id"/>
-                  </div>
+        <div class="section-title">
+          <h2>Vehicle</h2>
+          <p>Choose Your Vehicle by ID# or Create a New One</p>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-8 mt-5 mt-lg-0">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left" v-on:submit.prevent="createVehicle()">
+              <ul>
+                <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+              </ul>
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" class="form-control" placeholder="Make" v-model="newOrderParams.make"/>
                 </div>
-              </form>
-            </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="text" class="form-control" placeholder="Model" v-model="newOrderParams.model"/>
+                </div>
+                <div class="col-md-6 form-group">
+                  <input type="text" class="form-control" placeholder="Color" v-model="newOrderParams.color"/>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="text" class="form-control" placeholder="Plate" v-model="newOrderParams.plate"/>
+                </div>
+                <div class="text-center"><button type="submit">Create Vehicle</button></div>
+                <div class="col-7">OR</div>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" placeholder="Vehicle ID (if known)" v-model="newOrderParams.vehicle_id"/>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-      </section>
-      <!-- End Vehicle Section -->
-      <!-- ======= Vehicle Location Section ======= -->
-      <section id="contact" class="contact section-bg">
-        <div class="container">
-          <div class="section-title">
-            <h2>Vehicle Location</h2>
-            <p>Where Will Your Vehicle Be?</p>
-          </div>
+      </div>
+    </section>
+    <!-- End Vehicle Section -->
+    <!-- ======= Vehicle Location Section ======= -->
+    <section id="contact" class="contact section-bg">
+      <div class="container">
+        <div class="section-title">
+          <h2>Vehicle Location</h2>
+          <p>Where Will Your Vehicle Be?</p>
+        </div>
 
+        <div class="row justify-content-center">
+          <div class="col-lg-8 mt-5 mt-lg-0">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left">
+              <div class="row">
+              <div class="col form-group mt-3">
+                <input type="text" class="form-control" v-model="newOrderParams.location" placeholder="Vehilce Location Address" required>
+              </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Vehicle Location Section -->
+    <!-- Purchase Fuel Section -->
+    <section id="contact" class="contact section-bg">
+      <div class="container">
+        <div class="section-title">
+          <h2>Purchase Fuel</h2>
+        </div>
+        <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left" v-on:submit.prevent="createOrder()">
           <div class="row justify-content-center">
             <div class="col-lg-8 mt-5 mt-lg-0">
-              <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left">
-                <div class="row">
+              <div class="row">
                 <div class="col form-group mt-3">
-                  <input type="text" class="form-control" v-model="newOrderParams.location" placeholder="Vehilce Location Address" required>
-                </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- End Vehicle Location Section -->
-      <!-- Purchase Fuel Section -->
-      <section id="contact" class="contact section-bg">
-        <div class="container">
-          <div class="section-title">
-            <h2>Purchase Fuel</h2>
-          </div>
-
-          <div class="row justify-content-center">
-            <div class="col-lg-8 mt-5 mt-lg-0">
-              <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left">
-                <div class="row">
-                  <div class="col form-group mt-3">
-                    <div class="text-center">
-                      <button type="submit">Create Order</button>
-                    </div>
+                  <div class="text-center">
+                    <button type="submit">Create Order</button>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      <!-- End Purchase Fuel Section -->
-    </form>
+        </form>
+      </div>
+    </section>
   </div>
 </template>
 
