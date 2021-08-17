@@ -915,6 +915,13 @@ section {
   color: #7cc576;
 }
 
+.octane .product:hover, .octane .product:active {
+  color: red;
+}
+.octane .selected:active {
+  color: red;
+}
+
 .portfolio .portfolio-wrap:hover::before {
   top: 0;
   left: 0;

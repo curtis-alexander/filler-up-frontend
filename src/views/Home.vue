@@ -8,11 +8,11 @@
           <p>Choose Your Octane</p>
         </div>
         <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch portfolio-item filter-app" v-for="product in products" v-bind:key="product.id">
+          <div class="col-lg-4 col-md-6" v-for="product in products" v-bind:key="product.id">
             <div class="87" data-aos="zoom-in">
-              <div class="portfolio-wrap:hover">
-                <div class="bg-image hover-zoom">
-                  <img class="portfolio-lightbox portfolio-item filter-app img-fluid bx bx-link" v-on:click="productShow(product)" v-bind:src="product.image_url" />
+              <div>
+                <div class="product">
+                  <img v-on:click="productShow(product)" v-bind:src="product.image_url" />
                   <p>Price Per Gallon: {{ "$" + product.price_per_gallon }}</p>
                 </div>
               </div>
@@ -44,7 +44,7 @@
                   <input type="text" v-model="newOrderParams.gallon_amount" class="form-control" placeholder="Gallon Amount" />
                 </div>
                 <div class="col">
-                  Total: {{ gallonTotal || dollarTotal }}
+                  Total: {{ dollarTotal || gallonTotal }}
                 </div>
               </div>
             </form>
@@ -165,7 +165,7 @@ export default {
     gallonTotal: function () {
       return (
         this.newOrderParams.gallon_amount * this.newOrderParams.price_per_gallon
-      );
+      ).toFixed(2);
     },
     dollarTotal: function () {
       return this.newOrderParams.dollar_amount;
@@ -186,6 +186,7 @@ export default {
       console.log(this.newOrderParams);
     },
     createOrder: function () {
+      // this.newOrderParams.total = this.newOrderParams.dollar_amount;
       this.newOrderParams.product_id = this.currentProduct.id;
       console.log(this.newOrderParams);
       axios
