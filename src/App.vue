@@ -3,9 +3,7 @@
     <header id="header" class="d-flex align-items-center">
       <div class="container d-flex align-items-center justify-content-between">
         <div class="logo">
-          <a href="/home"
-            ><img src="assets/img/logo.png" alt="" class="img-fluid"
-          /></a>
+          <a href="/home"><img src="assets/img/logo.png" class="img-fluid" /></a>
         </div>
 
         <nav id="navbar" class="navbar">
@@ -43,7 +41,7 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-6">
-              <a href="#header" class="scrollto footer-logo"><img src="assets/img/hero-logo.png" alt=""></a>
+              <a href="#header"><img src="assets/img/hero-logo.png" alt=""></a>
               <h3>Fill'er Up</h3>
               <p>Stay up to date with everything Fuel!</p>
             </div>
@@ -52,7 +50,8 @@
           <div class="row footer-newsletter justify-content-center">
             <div class="col-lg-6">
               <form action="" method="post">
-                <input type="email" name="email" placeholder="Enter your Email"><input type="submit" value="Subscribe">
+                <input type="email" name="email" placeholder="Enter your Email">
+                <input type="submit" value="Subscribe">
               </form>
             </div>
           </div>
