@@ -100,6 +100,9 @@
           <p>Where Will Your Vehicle Be?</p>
         </div>
 
+        <!-- Mapbox -->
+        <div id="map" style="width: 600px; height: 400px;"></div>
+
         <div class="row justify-content-center">
           <div class="col-lg-8 mt-5 mt-lg-0">
             <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left">
@@ -147,6 +150,8 @@ img {
 
 <script>
 import axios from "axios";
+import mapboxgl from "mapbox-gl"; // or "const mapboxgl = require('mapbox-gl');"
+
 export default {
   data: function () {
     return {
@@ -170,6 +175,9 @@ export default {
     dollarTotal: function () {
       return this.newOrderParams.dollar_amount;
     },
+  },
+  mounted: function () {
+    this.doMapbox();
   },
   methods: {
     productsIndex: function () {
@@ -213,6 +221,16 @@ export default {
           console.log("Orders create error", error.response);
           this.errors = error.response.data.errors;
         });
+    },
+    doMapbox: function () {
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiY3VydGlzLWFsZXhhbmRlciIsImEiOiJja3JvYW83M3Uxd2V5MnVxcjhxMjBrc3hrIn0.UnPoKc-imBmUcKIsuS6dlA";
+      new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: [-89.0187, 42.6828], // starting position [lng, lat]
+        zoom: 11, // starting zoom
+      });
     },
   },
 };
