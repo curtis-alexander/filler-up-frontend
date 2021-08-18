@@ -223,8 +223,7 @@ export default {
         });
     },
     doMapbox: function () {
-      mapboxgl.accessToken =
-        "pk.eyJ1IjoiY3VydGlzLWFsZXhhbmRlciIsImEiOiJja3JvYW83M3Uxd2V5MnVxcjhxMjBrc3hrIn0.UnPoKc-imBmUcKIsuS6dlA";
+      mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_API_KEY;
       new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/mapbox/streets-v11",
