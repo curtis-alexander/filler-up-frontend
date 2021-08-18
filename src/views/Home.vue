@@ -141,12 +141,6 @@
   </div>
 </template>
 
-<style>
-img {
-  width: 100px;
-  height: 100px;
-}
-</style>
 
 <script>
 import axios from "axios";
@@ -224,13 +218,30 @@ export default {
     },
     doMapbox: function () {
       mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_API_KEY;
-      new mapboxgl.Map({
+      var center = [-89.0187, 42.6828];
+      const map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/mapbox/streets-v11",
-        center: [-89.0187, 42.6828], // starting position [lng, lat]
+        center: center, // starting position [lng, lat]
         zoom: 11, // starting zoom
       });
+      var el = document.createElement("div");
+      el.id = "marker";
+      new mapboxgl.Marker(el).setLngLat(center).addTo(map);
     },
   },
 };
 </script>
+
+<style>
+img {
+  width: 100px;
+  height: 100px;
+}
+/* #map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+} */
+</style>
