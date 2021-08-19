@@ -8,7 +8,7 @@
 
         <nav id="navbar" class="navbar">
           <ul>
-            <li><a class="nav-link scrollto active" href="/home">Home</a></li>
+            <li><a class="nav-link scrollto" href="/home">Home</a></li>
             <!-- <li><a class="nav-link scrollto" href="#about">About</a></li>
             <li><a class="nav-link scrollto" href="#services">Services</a></li>
             <li>
@@ -22,9 +22,7 @@
               ></a>
               <ul>
                 <li><a href="/">Signup</a></li>
-                <li><a href="/">Login</a></li>
-                <!-- <li><a href="#">Drop Down 3</a></li>
-                <li><a href="#">Drop Down 4</a></li> -->
+                <li><a href="/#login">Login</a></li>
               </ul>
             </li>
             <!-- <li><a class="nav-link scrollto" href="#contact">Contact</a></li> -->
@@ -51,7 +49,7 @@
             <div class="col-lg-6">
               <form action="" method="post">
                 <input type="email" name="email" placeholder="Enter your Email">
-                <input type="submit" value="Subscribe">
+                <!-- <input type="submit" value="Subscribe"> -->
               </form>
             </div>
           </div>

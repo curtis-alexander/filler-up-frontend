@@ -5,7 +5,7 @@
       <div class="container">
         <div class="section-title" data-aos="fade-up">
           <h2>Octane</h2>
-          <p>Choose Your Octane</p>
+          <p>Click On Your Preferred Octane</p>
         </div>
         <div class="row">
           <div class="col-lg-4 col-md-6" v-for="product in products" v-bind:key="product.id">
@@ -23,7 +23,7 @@
     </section>
     <!-- End Octane Section -->
     <!-- ======= Amount Section ======= -->
-    <section id="contact" class="contact section-bg">
+    <section id="amount" class="contact section-bg">
       <div class="container">
         <div class="section-title">
           <ul>
@@ -45,6 +45,7 @@
                 </div>
                 <div class="col">
                   Total: {{ dollarTotal || gallonTotal }}
+                  <!-- <p>NOP: {{ newOrderParams }}</p> -->
                 </div>
               </div>
             </form>
@@ -54,7 +55,7 @@
     </section>
     <!-- End Amount Section -->
     <!-- ======= Vehicle Section ======= -->
-    <section id="contact" class="contact section-bg">
+    <section id="vehicle" class="contact section-bg">
       <div class="container">
 
         <div class="section-title">
@@ -69,16 +70,16 @@
               </ul>
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="text" class="form-control" placeholder="Make" v-model="newOrderParams.make"/>
+                  <input type="text" class="form-control" placeholder="Make" v-model="newOrderParams.make" required/>
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="text" class="form-control" placeholder="Model" v-model="newOrderParams.model"/>
+                  <input type="text" class="form-control" placeholder="Model" v-model="newOrderParams.model" required/>
                 </div>
                 <div class="col-md-6 form-group">
-                  <input type="text" class="form-control" placeholder="Color" v-model="newOrderParams.color"/>
+                  <input type="text" class="form-control" placeholder="Color" v-model="newOrderParams.color" required/>
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="text" class="form-control" placeholder="Plate" v-model="newOrderParams.plate"/>
+                  <input type="text" class="form-control" placeholder="Plate" v-model="newOrderParams.plate" required/>
                 </div>
                 <div class="text-center"><button type="submit">Create Vehicle</button></div>
                 <div class="col-7">OR</div>
@@ -93,7 +94,7 @@
     </section>
     <!-- End Vehicle Section -->
     <!-- ======= Vehicle Location Section ======= -->
-    <section id="contact" class="contact section-bg">
+    <section id="location" class="contact section-bg">
       <div class="container">
         <div class="section-title">
           <h2>Vehicle Location</h2>
@@ -101,7 +102,8 @@
         </div>
 
         <!-- Mapbox -->
-        <div id="map" style="width: 600px; height: 400px;"></div>
+        <div id="map" style="width: 600px; height: 400px" class="contact section-bg row justify-content-center"></div>
+        <!-- End Mapbox -->
 
         <div class="row justify-content-center">
           <div class="col-lg-8 mt-5 mt-lg-0">
@@ -118,7 +120,7 @@
     </section>
     <!-- End Vehicle Location Section -->
     <!-- Purchase Fuel Section -->
-    <section id="contact" class="contact section-bg">
+    <section id="purchase" class="contact section-bg">
       <div class="container">
         <div class="section-title">
           <h2>Purchase Fuel</h2>
@@ -162,9 +164,19 @@ export default {
   },
   computed: {
     gallonTotal: function () {
-      return (
+      if (
         this.newOrderParams.gallon_amount * this.newOrderParams.price_per_gallon
-      ).toFixed(2);
+      ) {
+        return (
+          this.newOrderParams.gallon_amount *
+          this.newOrderParams.price_per_gallon
+        ).toFixed(2);
+      } else {
+        return "$0.00";
+      }
+      // return (
+      //   this.newOrderParams.gallon_amount * this.newOrderParams.price_per_gallon
+      // ).toFixed(2);
     },
     dollarTotal: function () {
       return this.newOrderParams.dollar_amount;
@@ -196,7 +208,7 @@ export default {
         .then((response) => {
           console.log("Orders create", response.data);
           this.newOrderParams = response.data;
-          this.$router.push("/confirmation");
+          this.$router.push("/confirmation#header");
         })
         .catch((error) => {
           console.log("Orders create error", error.response);
@@ -227,7 +239,15 @@ export default {
       });
       var el = document.createElement("div");
       el.id = "marker";
-      new mapboxgl.Marker(el).setLngLat(center).addTo(map);
+      new mapboxgl.Marker({ color: "#888", draggable: true })
+        .setLngLat(center)
+        .addTo(map);
+    },
+    mapMouseEvent: function () {
+      console.log("click");
+      this.map.on("click", (e) => {
+        console.log(e);
+      });
     },
   },
 };
@@ -238,10 +258,4 @@ img {
   width: 100px;
   height: 100px;
 }
-/* #map {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-} */
 </style>

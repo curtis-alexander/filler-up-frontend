@@ -11,7 +11,7 @@
     </section>
     <!-- End Hero -->
     <!-- ======= Signup Section ======= -->
-    <section id="contact" class="contact section-bg">
+    <section id="signup" class="contact section-bg">
       <div class="container">
         <div class="section-title">
           <h2>Signup</h2>
@@ -50,7 +50,7 @@
     </section>
     <!-- End Signup Section -->
     <!-- ======= Login Section ======= -->
-    <section id="contact" class="contact section-bg">
+    <section id="login" class="contact section-bg">
       <div class="container">
         <div class="section-title">
           <h2>Login</h2>
@@ -96,7 +96,7 @@ export default {
         .post("/users", this.newUserParams)
         .then((response) => {
           console.log(response.data);
-          this.$router.push("/new_account");
+          this.$router.push("/new_account#header");
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
