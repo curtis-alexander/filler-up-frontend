@@ -102,7 +102,18 @@
         </div>
 
         <!-- Mapbox -->
-        <div id="map" style="width: 600px; height: 400px" class="contact section-bg row justify-content-center"></div>
+        <section id="map" class="contact section-bg">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8 justify-content-center">
+                <div class="info d-flex flex-column justify-content-center" data-aos="fade-right">
+                  <div id="map" style="width: 600px; height: 400px" class="contact section-bg row justify-content-center">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         <!-- End Mapbox -->
 
         <div class="row justify-content-center">
