@@ -33,7 +33,7 @@
                   <input type="email" v-model="newUserParams.email" class="form-control" placeholder="Email" required>
                 </div>
                 <div class="col-md-6 form-group">
-                  <input type="text" v-model="newUserParams.phone_number" class="form-control" placeholder="Phone Number" required>
+                  <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" v-model="newUserParams.phone_number" class="form-control" placeholder="Phone Number (555-555-5555)" required>
                 </div>
                 <div class="col-md-6 form-group">
                   <input type="password" v-model="newUserParams.password" class="form-control" placeholder="Password" required>
