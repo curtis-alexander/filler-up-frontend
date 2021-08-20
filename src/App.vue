@@ -23,6 +23,8 @@
               <ul>
                 <li><a href="/">Signup</a></li>
                 <li><a href="/#login">Login</a></li>
+                <li><a href="#"></a></li>
+                <li><a v-on:click="logout()" href="/#login">Logout</a></li>
               </ul>
             </li>
             <!-- <li><a class="nav-link scrollto" href="#contact">Contact</a></li> -->
@@ -82,3 +84,18 @@
 </template>
 
 <style></style>
+
+<script>
+import axios from "axios";
+
+export default {
+  methods: {
+    logout: function () {
+      delete axios.defaults.headers.common["Authorization"];
+      localStorage.removeItem("jwt");
+      localStorage.removeItem("user_id");
+      this.$router.push("/#login");
+    },
+  },
+};
+</script>

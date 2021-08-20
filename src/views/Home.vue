@@ -82,6 +82,7 @@
                   <input type="text" class="form-control" placeholder="Plate" v-model="newOrderParams.plate" required/>
                 </div>
                 <div class="text-center"><button type="submit">Create Vehicle</button></div>
+                <p> {{ createVehicle.return }} </p>
                 <div class="col-7">OR</div>
                 <div class="col-md-6">
                   <input type="text" class="form-control" placeholder="Vehicle ID (if known)" v-model="newOrderParams.vehicle_id"/>
@@ -107,8 +108,7 @@
             <div class="row justify-content-center">
               <div class="col-lg-8 justify-content-center">
                 <div class="info d-flex flex-column justify-content-center" data-aos="fade-right">
-                  <div id="map" style="width: 600px; height: 400px" class="contact section-bg row justify-content-center">
-                  </div>
+                  <div id="map" style="width: 600px; height: 400px" class="contact section-bg row justify-content-center"></div>
                 </div>
               </div>
             </div>
@@ -185,9 +185,6 @@ export default {
       } else {
         return "$0.00";
       }
-      // return (
-      //   this.newOrderParams.gallon_amount * this.newOrderParams.price_per_gallon
-      // ).toFixed(2);
     },
     dollarTotal: function () {
       return this.newOrderParams.dollar_amount;
@@ -211,9 +208,11 @@ export default {
       console.log(this.newOrderParams);
     },
     createOrder: function () {
-      // this.newOrderParams.total = this.newOrderParams.dollar_amount;
+      this.newOrderParams.total =
+        this.newOrderParams.dollar_amount ||
+        this.newOrderParams.gallon_amount *
+          this.newOrderParams.price_per_gallon;
       this.newOrderParams.product_id = this.currentProduct.id;
-      console.log(this.newOrderParams);
       axios
         .post(`/orders?user_id=${localStorage.user_id}`, this.newOrderParams)
         .then((response) => {
@@ -225,6 +224,7 @@ export default {
           console.log("Orders create error", error.response);
           this.errors = error.response.data.errors;
         });
+      console.log(this.newOrderParams);
     },
     createVehicle: function () {
       axios
@@ -238,6 +238,7 @@ export default {
           console.log("Orders create error", error.response);
           this.errors = error.response.data.errors;
         });
+      return "New Vehicle Made";
     },
     doMapbox: function () {
       mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_API_KEY;
