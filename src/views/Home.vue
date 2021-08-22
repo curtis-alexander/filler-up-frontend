@@ -206,6 +206,7 @@ export default {
       this.newOrderParams = product;
       this.newOrderParams.product_id = this.newOrderParams.id;
       console.log(this.newOrderParams);
+      alert(product.octane + " octane selected");
     },
     createOrder: function () {
       this.newOrderParams.total =
