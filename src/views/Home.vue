@@ -103,30 +103,24 @@
         </div>
 
         <!-- Mapbox -->
-        <section id="map" class="contact section-bg">
+        <section style="width: 600px; height: 400px; margin: 0 auto" class="contact section-bg">
           <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8 justify-content-center">
-                <div class="info d-flex flex-column justify-content-center" data-aos="fade-right">
-                  <div id="map" style="width: 600px; height: 400px" class="contact section-bg row justify-content-center"></div>
-                </div>
-              </div>
-            </div>
+            <div id="map" style="width: 600px; height: 400px"></div>
           </div>
         </section>
         <!-- End Mapbox -->
 
-        <div class="row justify-content-center">
+        <!-- <div class="row justify-content-center">
           <div class="col-lg-8 mt-5 mt-lg-0">
             <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left">
               <div class="row">
-              <div class="col form-group mt-3">
-                <input type="text" class="form-control" v-model="newOrderParams.location" placeholder="Vehilce Location Address" required>
-              </div>
+                <div class="col form-group mt-3">
+                  <input type="text" class="form-control" v-model="newOrderParams.location" placeholder="Vehilce Location Address" required>
+                </div>
               </div>
             </form>
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
     <!-- End Vehicle Location Section -->
@@ -168,6 +162,8 @@ export default {
       currentProduct: {},
       newVehicle: {},
       newOrderParams: {},
+      currentMarker: "",
+      currentLocation: {},
     };
   },
   created: function () {
@@ -248,19 +244,26 @@ export default {
         container: "map",
         style: "mapbox://styles/mapbox/streets-v11",
         center: center, // starting position [lng, lat]
-        zoom: 11, // starting zoom
+        zoom: 12, // starting zoom
       });
-      var el = document.createElement("div");
-      el.id = "marker";
-      new mapboxgl.Marker({ color: "#888", draggable: true })
-        .setLngLat(center)
-        .addTo(map);
-    },
-    mapMouseEvent: function () {
-      console.log("click");
-      this.map.on("click", (e) => {
-        console.log(e);
-      });
+      map.addControl(new mapboxgl.NavigationControl());
+      map.on("click", clickMark.bind(this));
+      function clickMark(event) {
+        console.log(this.currentMarker);
+        if (this.currentMarker !== "") {
+          console.log("in 254");
+          this.currentMarker.remove();
+        }
+        var coordinates = event.lngLat;
+        var clickmark = new mapboxgl.Marker();
+        clickmark.setLngLat(coordinates).addTo(map);
+        console.log(event);
+        console.log("Lng:", coordinates.lng, "Lat:", coordinates.lat);
+        this.currentMarker = clickmark;
+        this.currentLocation = coordinates;
+        console.log("current loc", this.currentLocation);
+        this.newOrderParams.location = `${this.currentLocation.lng}, ${this.currentLocation.lat}`;
+      }
     },
   },
 };

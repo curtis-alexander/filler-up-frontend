@@ -2,8 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Signup from "../views/Signup.vue";
-import Login from "../views/Login.vue";
-import OrdersNew from "../views/OrdersNew.vue";
 import Confirmation from "../views/Confirmation.vue";
 import NewAccount from "../views/NewAccount.vue";
 
@@ -16,19 +14,9 @@ const routes = [
     component: Home,
   },
   {
-    path: "/login",
-    name: "Login",
-    component: Login,
-  },
-  {
     path: "/",
     name: "Signup",
     component: Signup,
-  },
-  {
-    path: "/orders",
-    name: "OrdersNew",
-    component: OrdersNew,
   },
   {
     path: "/confirmation",
